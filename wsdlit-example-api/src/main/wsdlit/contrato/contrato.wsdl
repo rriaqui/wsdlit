@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+    name="helloworld"
+    targetNamespace="http://localhost.localdomain/wsdlit/examples/helloworld"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+    xmlns:tns="http://localhost.localdomain/wsdlit/examples/helloworld"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+>
+    <documentation>Exemplo do contrato dun servizo que saúda a quen o consume.</documentation>
+    <types>
+        <xsd:schema targetNamespace="http://localhost.localdomain/wsdlit/examples/helloworld" xmlns:tns="http://localhost.localdomain/wsdlit/examples/helloworld" elementFormDefault="qualified">
+            <xsd:complexType name="SayHelloRequestType">
+                <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="gl-ES">O nome da persoa a saudar.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="SayHelloResponseType">
+                <xsd:sequence>
+                    <xsd:element name="message" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="gl-ES">Mensaxe de resposa que se comporá a partires da plantilla seguinte: `Hola, ${name}. ¿Cómo estás?`.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="SayHelloRequest" type="tns:SayHelloRequestType"></xsd:element>
+            <xsd:element name="SayHelloResponse" type="tns:SayHelloResponseType"></xsd:element>
+            <xsd:complexType name="SayHiRequestType">
+                <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="gl-ES">O nome da persoa a saudar.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="SayHiResponseType">
+                <xsd:sequence>
+                    <xsd:element name="message" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="gl-ES">Mensaxe de resposa que se comporá a partires da plantilla seguinte: `${name}, ¿qué tal?`.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="SayHiRequest" type="tns:SayHiRequestType"></xsd:element>
+            <xsd:element name="SayHiResponse" type="tns:SayHiResponseType"></xsd:element>
+        </xsd:schema>
+    </types>
+    <message name="sayHiRequest">
+        <part name="part" element="tns:SayHiRequest"/>
+    </message>
+    <message name="sayHiResponse">
+        <part name="part" element="tns:SayHiResponse"/>
+    </message>
+    <message name="sayHelloRequest">
+        <part name="part" element="tns:SayHelloRequest"/>
+    </message>
+    <message name="sayHelloResponse">
+        <part name="part" element="tns:SayHelloResponse"/>
+    </message>
+    <portType name="greetingPortType">
+        <documentation>Porto que agrupa as funcionalidades de saúdo.</documentation>
+        <operation name="sayHi">
+            <documentation>Devolve unha mensaxe cun saúdo informal.</documentation>
+            <input message="tns:sayHiRequest"/>
+            <output message="tns:sayHiResponse"/>
+        </operation>
+        <operation name="sayHello">
+            <documentation>Devolve unha mensaxe cun saúdo formal.</documentation>
+            <input message="tns:sayHelloRequest"/>
+            <output message="tns:sayHelloResponse"/>
+        </operation>
+    </portType>
+    <plnk:partnerLinkType name="helloworld">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes.
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="greetingPortTypeRole" portType="tns:greetingPortType"/>
+    </plnk:partnerLinkType>
+</definitions>

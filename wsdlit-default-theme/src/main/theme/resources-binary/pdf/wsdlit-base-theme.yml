@@ -1,0 +1,120 @@
+###
+# #%L
+# wsdlit-default-theme
+# %%
+# Copyright (C) 2021 - 2022 Axencia para a Modernización Tecnolóxica de Galicia (AMTEGA) - Xunta de Galicia
+# %%
+# This file is part of "wsdlit".
+# 
+# "wsdlit" is free software: you can redistribute it and/or modify
+# it under the terms of:
+# European Union Public License, either Version 1.2 or – as soon
+# they will be approved by the European Commission - subsequent versions of
+# the EUPL;
+# 
+# "wsdlit" is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# European Union Public License for more details.
+# 
+# You may obtain a copy of tce European Union Public Licence at:
+# http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+# #L%
+###
+
+# Lista de persoalizacións dispoñibles: https://github.com/asciidoctor/asciidoctor-pdf/blob/master/data/themes/default-theme.yml
+extends:
+    - default
+
+page:
+    layout: portrait
+    margin: [1.25in, 0.60in, 1.00in, 0.60in]
+    margin-inner: 0.60in
+    margin-outer: 0.60in
+    numbering-start-at: toc
+    size: A4
+
+title-page:
+    align: right
+    background-color: #e8e8e8
+    font-color: #000000
+    line-height: 1
+    authors:
+        margin-top: 8
+    title:
+        font-size: 20
+        font-color: #000000
+        top: 65%
+    subtitle:
+        font-style: bold-italic
+
+header:
+    pages: +title,+toc
+    height: 1.5in
+    line-height: 1
+    recto:
+        left:
+            content: image:images/ic-logo-header.png[width="200"]
+        right:
+            content: image:images/ic-logo-business.png[width="200"]
+    verso:
+        left:
+            content: image:images/ic-logo-business.png[width="200"]
+        right:
+            content: image:images/ic-logo-header.png[width="200"]
+
+footer:
+    border-color: #000000
+    border-width: 0.25
+    font-size: 10
+    height: 0.75in
+    vertical-align: top
+    recto:
+        center:
+            content: '{docname}-{revnumber}{outfilesuffix}'
+        right:
+            content: '{page-caption} {page-number} de {page-count}'
+    verso:
+        center:
+            content: '{docname}{outfilesuffix}'
+        left:
+            content: '{page-caption} {page-number} de {page-count}'
+
+base:
+    align: justify
+    border-color: #eeeeee
+    border-radius: 4
+    border-width: 0.5
+    font-family: Noto Serif
+    font-size: 11.25
+    line-height-length: 18
+
+literal:
+    background-color: #f5f5f5
+    border-color: #cccccc
+    border-radius: 4
+    font-family: M+ 1mn
+    line-height: 1
+
+code:
+    background-color: #f5f5f5
+    border-color: #cccccc
+    border-radius: $base-border-radius
+    font-family: $literal-font-family
+    font-size: ceil($base-font-size)
+    line-height: $literal-line-height
+    padding: $code-font-size
+
+running-content:
+    start-at: toc
+
+small:
+    font-size: 8
+
+role:
+    red:
+        font-color: #BF0000
+    green:
+        font-color: #006000
+    silver:
+        font-color: #909090

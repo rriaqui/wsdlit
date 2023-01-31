@@ -1,0 +1,124 @@
+<!--
+  #%L
+  wsdlit
+  %%
+  Copyright (C) 2021 - 2022 Axencia para a Modernización Tecnolóxica de Galicia (AMTEGA) - Xunta de Galicia
+  %%
+  This file is part of "wsdlit".
+  
+  "wsdlit" is free software: you can redistribute it and/or modify
+  it under the terms of:
+  European Union Public License, either Version 1.2 or – as soon
+  they will be approved by the European Commission - subsequent versions of
+  the EUPL;
+  
+  "wsdlit" is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  European Union Public License for more details.
+  
+  You may obtain a copy of tce European Union Public Licence at:
+  http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+  #L%
+  -->
+
+<project name="wsdlit"
+     xmlns="http://maven.apache.org/DECORATION/1.8.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 https://maven.apache.org/xsd/decoration-1.8.0.xsd"
+>
+
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.11.1</version>
+    </skin>
+
+    <bannerLeft>
+        <alt>Logo de AMTEGA</alt>
+        <src>../images/logo-amtega.svg</src>
+        <href>https://amtega.xunta.gal</href>
+        <title>Axencia para a Modernización de Galicia (AMTEGA)</title>
+        <height>67px</height>
+    </bannerLeft>
+
+    <bannerRight>
+        <alt>wsdlit</alt>
+        <src>../images/wsdlit-logo.png</src>
+        <href>https://software.emprego.xunta.gal/wsdlit/index.html</href>
+        <title>wsdlit</title>
+        <height>67px</height>
+    </bannerRight>
+
+    <poweredBy>
+        <logo name="Construído con Maven" href="https://maven.apache.org/"
+              img="https://maven.apache.org/images/logos/maven-feather.png"
+              alt="Logo Maven"
+              title="Construído con Maven"
+        />
+    </poweredBy>
+
+    <custom>
+        <fluidoSkin>
+            <gitHub>
+                <projectId>amtega/wsdlit</projectId>
+                <ribbonOrientation>right</ribbonOrientation>
+                <ribbonColor>darkblue</ribbonColor>
+            </gitHub>
+            <navBarStyle>navbar-inverse</navBarStyle>
+            <sideBarEnabled>false</sideBarEnabled>
+            <topBarEnabled>true</topBarEnabled>
+            <topBarIcon>
+                <name>wsdlit</name>
+                <alt>WSDLIT</alt>
+                <src>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAUCAAAAAD0aAH1AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACjoAAAo6AcPKNo4AAAAHdElNRQfmDBMMAwc3xnhLAAAB3ElEQVQ4y2NkIArIzRT7jynKRJxm7ICOmhmZSdBsZ8PA6q2N0PvizG8GRiYiNScnMHBWuCIUn53whenMzn8wPgt+ZzJCMBT8MxDiZj5x04X533+EZlbfO5cYnKQ3fBb0PPBMx0/y27mNP5jsPP7tQHcXIxPT3duvt7IYSP6HO/tfaBoDd9UUbQazWk6VeSavmVwEGQLmSP0vtfqLGkDnJn998ezjqVPvGBE2/z0ewSsrcMfshOWjR8HcuU8Z2H/zF24r+mO2Gc3m///+WdndqmNh+IcUYKdEFPWfrTXnNjv1+wFHS7DKn39yspv+MFw4gz88IbK3P1qYX9gvbyR/nOF0HkfN5g4eLoZPDAy/PzLi1QwJ7XcXvfl7bvyK+nOF4e/WHSJunccu/ZNkYOCQvIs9Dv4j2/z/qJPw5fe3424/Z1DSYH116Qf7o4sJYqzexv8wtfJ8ePP9L0o8n/1w9TnD0aijvxnMyp7/kDu+73fb5A2vGC7+YPj/9ReSncwM/833VfIlGP1jYGBggHqKTefDPQYBjTtvGLi1lDgenfnMwCBnxnCSneEOs+a7Z7AsyfjimQ4rw/OHvzQhGRR/iMABND8zMv1lYGBiZEBOYUSD/38ZGBgQ4TBwhQEArOGufpEW1LAAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMTEtMTZUMDY6MzI6MTcrMDA6MDBwgeE6AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTExLTE2VDA2OjMyOjE3KzAwOjAwAdxZhgAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMi0xMi0xOVQxMjowMzowNyswMDowMJxJH4sAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC</src>
+                <href>/index.html</href>
+            </topBarIcon>
+        </fluidoSkin>
+    </custom>
+
+    <publishDate position="right"/>
+    <version position="right" />
+
+    <body>
+        <head>
+            #if ( $project.artifactId != 'wsdlit' )
+                #set ( $moduleRelativePath = '../../' )
+            #else
+                #set ( $moduleRelativePath = '../' )
+            #end
+            #set ( $versionsRelativePath = "${moduleRelativePath}${relativePath}/../versions.js" )
+            #set( $re = "(\/\.\/)" )
+            #set( $optimizedRelativePath = $versionsRelativePath.replaceAll( $re, '/' ) )
+            <![CDATA[
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+        <script src="$optimizedRelativePath/../versions.js"></script>
+            ]]>
+        </head>
+
+        <breadcrumbs>
+            <item name="wsdlit" href="${this.url}/gl/index.html"/>
+        </breadcrumbs>
+
+        <menu name="Visión xeral">
+            <item name="Introdución" href="./index.html"/>
+            <item name="FAQ" href="./faq.html"/>
+            <item name="Licenza" href="./licenses.html"/>
+            <item name="Como construir o proxecto" href="./how-to-build.html"/>
+        </menu>
+
+        <menu name="Os contratos dos servizos">
+            <item name="O deseño dos contratos" href="./wsdls/design.html"/>
+            <item name="Abstracto vs Concreto" href="./wsdls/abstract_vs_concrete.html"/>
+            <item name="Recomendacións" href="./wsdls/recommendations.html"/>
+        </menu>
+
+        <menu name="Outros">
+            <item name="Enlaces" href="./others/links.html"/>
+            <item name="Futuro" href="./others/planned.html"/>
+        </menu>
+
+        <menu ref="modules" inherit="bottom" inheritAsRef="true" />
+        <menu ref="reports" inherit="bottom" inheritAsRef="true" />
+    </body>
+</project>

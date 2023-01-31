@@ -1,0 +1,70 @@
+<!--
+  #%L
+  AMTEGA WsdlIT Maven Plugin
+  %%
+  Copyright (C) 2021 - 2022 Axencia para a Modernización Tecnolóxica de Galicia (AMTEGA) - Xunta de Galicia
+  %%
+  This file is part of "wsdlit".
+
+  "wsdlit" is free software: you can redistribute it and/or modify
+  it under the terms of:
+  European Union Public License, either Version 1.2 or – as soon
+  they will be approved by the European Commission - subsequent versions of
+  the EUPL;
+
+  "wsdlit" is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  European Union Public License for more details.
+
+  You may obtain a copy of tce European Union Public Licence at:
+  http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+  #L%
+  -->
+
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>gal.xunta.amtega.wsdlit</groupId>
+        <artifactId>wsdlit-guide-parent</artifactId>
+        <version>1.0.0</version>
+        <relativePath>..</relativePath>
+    </parent>
+
+    <groupId>groupId</groupId>
+    <artifactId>artifactId</artifactId>
+    <version>4.5.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Guía do desenvolvedor</name>
+    <description>Guía do desenvolvedor de procesos asíncronos</description>
+
+    <organization>
+        <name>Axencia para a Modernización Tecnolóxica de Galicia (AMTEGA)</name>
+        <url>https://amtega.xunta.gal</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>rariqui</id>
+            <name>Ramón Rial Quintela</name>
+            <timezone>Europe/Madrid</timezone>
+            <organization>Axencia para a Modernización Tecnolóxica de Galicia (AMTEGA)</organization>
+            <organizationUrl>https://amtega.xunta.gal</organizationUrl>
+        </developer>
+    </developers>
+
+    <properties>
+        <wsdlit.api.author>author</wsdlit.api.author>
+        <wsdlit.api.email>email</wsdlit.api.email>
+        <wsdlit.api.organization>organization</wsdlit.api.organization>
+        <wsdlit.api.copyright>copyright</wsdlit.api.copyright>
+        <wsdlit.site.repository.url>http://localhost.localdomain/repository/api-snapshots</wsdlit.site.repository.url>
+        <wsdlit.site.server.id>server-id</wsdlit.site.server.id>
+        <wsdlit.theme.artifact>gal.xunta.amtega.wsdlit:wsdlit-default-theme:1.0.0</wsdlit.theme.artifact>
+        <wsdlit.api.revDate>2022-12-31T10:00:00Z</wsdlit.api.revDate>
+    </properties>
+</project>

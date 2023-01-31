@@ -1,0 +1,5 @@
+[appendix]
+== Marcas rexistradas
+
+* _{Java}_ - {uri-Java}
+* _{Maven}_ - {uri-Maven}

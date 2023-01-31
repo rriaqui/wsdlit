@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  wsdlit-templates-demo
+  %%
+  Copyright (C) 2021 - 2022 Axencia para a Modernización Tecnolóxica de Galicia (AMTEGA) - Xunta de Galicia
+  %%
+  This file is part of "wsdlit".
+  
+  "wsdlit" is free software: you can redistribute it and/or modify
+  it under the terms of:
+  European Union Public License, either Version 1.2 or – as soon
+  they will be approved by the European Commission - subsequent versions of
+  the EUPL;
+  
+  "wsdlit" is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  European Union Public License for more details.
+  
+  You may obtain a copy of tce European Union Public Licence at:
+  http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+  #L%
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>wsdlit</artifactId>
+        <groupId>gal.xunta.amtega.wsdlit</groupId>
+        <version>2.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>wsdlit-templates-demo</artifactId>
+    <description>Un exemplo de como modificar as plantillas empregadas para a xeración dos arquivos `.adoc`.</description>
+
+    <properties>
+        <wsdlit.main.basedir>${project.parent.basedir}</wsdlit.main.basedir>
+    </properties>
+</project>

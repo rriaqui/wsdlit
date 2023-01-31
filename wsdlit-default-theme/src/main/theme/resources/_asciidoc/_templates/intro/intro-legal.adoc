@@ -1,0 +1,8 @@
+= Cláusula de confidencialidade
+
+Este documento é propiedade de *{wsdlit-api-organization}*.
+Deberá empregar este material exclusivamente para os servizos que foron acordados con *{wsdlit-api-organization}*
+e que requiren necesariamente da súa utilización.
+
+Está prohibida a reprodución parcial ou  total, por calquera medio ou método,
+dos contidos deste documento para calquera outro uso non acordado con *{wsdlit-api-organization}*.

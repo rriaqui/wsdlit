@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  AMTEGA WsdlIT Maven Plugin
+  %%
+  Copyright (C) 2021 - 2022 Axencia para a Modernización Tecnolóxica de Galicia (AMTEGA) - Xunta de Galicia
+  %%
+  This file is part of "wsdlit".
+
+  "wsdlit" is free software: you can redistribute it and/or modify
+  it under the terms of:
+  European Union Public License, either Version 1.2 or – as soon
+  they will be approved by the European Commission - subsequent versions of
+  the EUPL;
+
+  "wsdlit" is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  European Union Public License for more details.
+
+  You may obtain a copy of tce European Union Public Licence at:
+  http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+  #L%
+  -->
+
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>gal.xunta.amtega.wsdlit.test</groupId>
+    <artifactId>integration-test-emphorca-api</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <description>API de demostración.</description>
+
+    <developers>
+        <developer>
+            <id>rariqui</id>
+            <name>Ramón Rial</name>
+            <email>ramon.rial.quintela@xunta.gal</email>
+        </developer>
+    </developers>
+
+    <organization>
+        <name>Axencia para a Modernización de Tecnoloxía de Galicia (AMTEGA) - Xunta de Galicia</name>
+        <url>https://amtega.xunta.gal</url>
+    </organization>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <wsdlit.api.revDate>2022-12-31T10:00:00Z</wsdlit.api.revDate>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>@project.groupId@</groupId>
+                <artifactId>@project.artifactId@</artifactId>
+                <version>@project.version@</version>
+                <executions>
+                    <execution>
+                        <id>generate-sources-goal</id>
+                        <goals>
+                            <goal>descriptor-download</goal>
+                            <goal>artifact-download</goal>
+                            <goal>generate-resources</goal>
+                            <goal>generate-sources</goal>
+                            <goal>generate-maven-project</goal>
+                        </goals>
+
+                        <configuration>
+                            <patchSkip>false</patchSkip>
+                            <sources>
+                                <source>contrato/contrato.wsdl</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>@project.groupId@</groupId>
+                        <artifactId>wsdlit-membranesoa</artifactId>
+                        <version>@project.version@</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>

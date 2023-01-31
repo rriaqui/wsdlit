@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  #%L
+  wsdlit-logo
+  %%
+  Copyright (C) 2021 - 2022 Axencia para a Modernización Tecnolóxica de Galicia (AMTEGA) - Xunta de Galicia
+  %%
+  This file is part of "wsdlit".
+  
+  "wsdlit" is free software: you can redistribute it and/or modify
+  it under the terms of:
+  European Union Public License, either Version 1.2 or – as soon
+  they will be approved by the European Commission - subsequent versions of
+  the EUPL;
+  
+  "wsdlit" is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  European Union Public License for more details.
+  
+  You may obtain a copy of tce European Union Public Licence at:
+  http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+  #L%
+  -->
+
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="76.398621mm"
+   height="25.503222mm"
+   viewBox="0 0 76.398621 25.503222"
+   version="1.1"
+   id="svg16"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="ic-wsdlit-logo.svg">
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="-149.57823"
+     inkscape:cy="-158.25031"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1919"
+     inkscape:window-height="1048"
+     inkscape:window-x="1680"
+     inkscape:window-y="4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata13">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title/>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-32.505951,-30.90476)">
+    <rect
+       style="fill:#000000;stroke-width:0.1611826"
+       id="rect18"
+       width="50.31073"
+       height="25.503222"
+       x="32.505951"
+       y="30.90476"
+       inkscape:export-xdpi="66.489998"
+       inkscape:export-ydpi="66.489998" />
+    <rect
+       style="fill:#cccccc;stroke-width:0.11762035"
+       id="rect18-3"
+       width="26.791012"
+       height="25.503222"
+       x="82.113564"
+       y="30.90476"
+       inkscape:export-xdpi="66.489998"
+       inkscape:export-ydpi="66.489998" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot20"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,5.7464837,-34.076351)"
+       inkscape:export-xdpi="66.489998"
+       inkscape:export-ydpi="66.489998"><flowRegion
+         id="flowRegion22"
+         style="fill:#ffffff"><rect
+           id="rect24"
+           width="342.85715"
+           height="157.14287"
+           x="122.85714"
+           y="259.66254"
+           style="fill:#ffffff" /></flowRegion><flowPara
+         id="flowPara26"
+         style="font-size:66.66666412px;fill:#ffffff">wsdl</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot20-6"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,56.478895,-33.951466)"
+       inkscape:export-xdpi="66.489998"
+       inkscape:export-ydpi="66.489998"><flowRegion
+         id="flowRegion22-7"
+         style="fill:#000000"><rect
+           id="rect24-5"
+           width="342.85715"
+           height="157.14287"
+           x="122.85714"
+           y="259.66254"
+           style="fill:#000000" /></flowRegion><flowPara
+         id="flowPara26-3"
+         style="font-size:66.66666412px;fill:#000000">it</flowPara></flowRoot>  </g>
+</svg>

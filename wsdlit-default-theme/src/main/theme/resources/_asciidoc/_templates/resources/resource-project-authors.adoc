@@ -1,0 +1,5 @@
+== Autores
+
+*{wsdlit-project-code}* foi escrito por {author}, programador en {organization}, quen o mantén actualmente.
+
+Por favor, revise o historial de cambios de {seed-contribution}[pom.xml] para ver as contribucións.

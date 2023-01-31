@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  wsdlit-default-theme
+  %%
+  Copyright (C) 2021 - 2022 Axencia para a Modernización Tecnolóxica de Galicia (AMTEGA) - Xunta de Galicia
+  %%
+  This file is part of "wsdlit".
+  
+  "wsdlit" is free software: you can redistribute it and/or modify
+  it under the terms of:
+  European Union Public License, either Version 1.2 or – as soon
+  they will be approved by the European Commission - subsequent versions of
+  the EUPL;
+  
+  "wsdlit" is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  European Union Public License for more details.
+  
+  You may obtain a copy of tce European Union Public Licence at:
+  http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+  #L%
+  -->
+
+<svg fill="none" opacity=".5" stroke="#ff4500" stroke-width="3.994" viewBox="0 0 163.01 163.01" xmlns="http://www.w3.org/2000/svg">
+<path d="m5.6093 107.9 102.29-102.29c3.787-3.787 8.9173-4.7541 11.503-2.1684l40.163 40.163c2.5857 2.5857 1.6186 7.7161-2.1684 11.503l-102.29 102.29c-3.787 3.787-8.9173 4.7541-11.503 2.1684l-40.163-40.163c-2.5857-2.5857-1.6186-7.7161 2.1684-11.503z"/>
+<g transform="rotate(-45 136.48 62.259)">
+<path d="m36.247 27.927v18.141h3.8125q4.8281 0 7.0625-2.1875 2.25-2.1875 2.25-6.9062 0-4.6875-2.25-6.8594-2.2344-2.1875-7.0625-2.1875zm-3.1562-2.5938h6.4844q6.7812 0 9.9531 2.8281 3.1719 2.8125 3.1719 8.8125 0 6.0312-3.1875 8.8594t-9.9375 2.8281h-6.4844z"/>
+<path d="m68.778 37.724q1.0156 0.34375 1.9688 1.4688 0.96875 1.125 1.9375 3.0938l3.2031 6.375h-3.3906l-2.9844-5.9844q-1.1562-2.3438-2.25-3.1094-1.0781-0.76562-2.9531-0.76562h-3.4375v9.8594h-3.1562v-23.328h7.125q4 0 5.9688 1.6719t1.9688 5.0469q0 2.2031-1.0312 3.6562-1.0156 1.4531-2.9688 2.0156zm-7.9062-9.7969v8.2812h3.9688q2.2812 0 3.4375-1.0469 1.1719-1.0625 1.1719-3.1094t-1.1719-3.0781q-1.1562-1.0469-3.4375-1.0469z"/>
+<path d="m86.45 28.442-4.2812 11.609h8.5781zm-1.7812-3.1094h3.5781l8.8906 23.328h-3.2812l-2.125-5.9844h-10.516l-2.125 5.9844h-3.3281z"/>
+<path d="m100.53 25.333h13.406v2.6562h-10.25v6.875h9.25v2.6562h-9.25v11.141h-3.1562z"/>
+<path d="m115.17 25.333h19.734v2.6562h-8.2812v20.672h-3.1719v-20.672h-8.2812z"/>
+</g>
+</svg>

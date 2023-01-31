@@ -1,0 +1,8 @@
+:sectnums!:
+= Documentación adicional
+
+include::resources/resource-feedback.adoc[]
+
+include::resources/resource-trademarks.adoc[]
+
+include::resources/resource-otherFormatsForThisDocument.adoc[]

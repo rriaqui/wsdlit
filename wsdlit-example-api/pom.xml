@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  wsdlit-example-api
+  %%
+  Copyright (C) 2021 - 2022 Axencia para a Modernización Tecnolóxica de Galicia - Xunta de Galicia
+  %%
+  This file is part of "wsdlit".
+
+  "wsdlit" is free software: you can redistribute it and/or modify
+  it under the terms of:
+  European Union Public License, either Version 1.2 or – as soon
+  they will be approved by the European Commission - subsequent versions of
+  the EUPL;
+
+  "wsdlit" is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  European Union Public License for more details.
+
+  You may obtain a copy of tce European Union Public Licence at:
+  http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+  #L%
+  -->
+
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>gal.xunta.amtega.wsdlit</groupId>
+        <artifactId>wsdlit</artifactId>
+        <version>2.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>gal.xunta.amtega.wsdlit.demo</groupId>
+    <artifactId>wsdlit-example-api</artifactId>
+    <packaging>pom</packaging>
+    <description>Un exemplo de xeración da documentación dunha API de saúdos.</description>
+
+    <developers>
+        <developer>
+            <name>Ramón Rial</name>
+            <id>rrq</id>
+            <email>ramon.rial.quitenla@xunta.gal</email>
+        </developer>
+    </developers>
+
+    <organization>
+        <name>Axencia para a Modernización Tecnolóxica de Galicia - Xunta de Galicia</name>
+        <url>https://emprego.xunta.gal</url>
+    </organization>
+
+    <properties>
+        <wsdlit.api.version>4.3.1</wsdlit.api.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <wsdlit.main.basedir>${project.parent.basedir}</wsdlit.main.basedir>
+        <wsdlit.api.revDate>2022-12-31T10:00:00Z</wsdlit.api.revDate>
+    </properties>
+
+    <build>
+        <plugins>
+            <!--
+                Copy the pre builded example API.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <!--
+                            Copiamos a API xerada ao directorio do site,
+                            para desplegala conxuntamente.
+                        -->
+                        <id>copy-wsdlit-guide-to-site</id>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <phase>site</phase>
+                        <configuration>
+                            <outputDirectory>${project.reporting.outputDirectory}/example</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/example</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>wdslit-example-api-enabled</id>
+            <activation>
+                <property>
+                    <name>wsdlit-example-api-enabled</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>gal.xunta.amtega.wsdlit</groupId>
+                        <artifactId>wsdlit-maven-plugin</artifactId>
+                        <version>${project.version}</version>
+                        <executions>
+                            <execution>
+                                <id>generate-sources-goal</id>
+                                <goals>
+                                    <goal>descriptor-download</goal>
+                                    <goal>artifact-download</goal>
+                                    <goal>generate-resources</goal>
+                                    <goal>generate-sources</goal>
+                                    <goal>generate-maven-project</goal>
+                                </goals>
+
+                                <configuration>
+                                    <patchSkip>false</patchSkip>
+                                    <sources>
+                                        <source>contrato/contrato.wsdl</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>wsdlit-example-api-build</id>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <configuration>
+                                    <executable>mvn</executable>
+                                    <arguments>
+                                        <argument>package</argument>
+                                        <argument>--debug</argument>
+                                        <argument>--errors</argument>
+                                        <argument>--show-version</argument>
+                                        <argument>-f</argument>
+                                        <argument>${project.build.directory}/generated-sources/maven/pom.xml</argument>
+                                        <argument>-Pwsdlit-build-enabled</argument>
+                                        <argument>-Dwsdlit.convert.pdf.skip=false</argument>
+                                        <argument>-Dwsdlit.convert.epub.skip=false</argument>
+                                        <argument>-Dwsdlit.convert.mobi.skip</argument>
+                                    </arguments>
+                                    <outputFile>${project.build.directory}/generated-sources/maven/build.log</outputFile>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

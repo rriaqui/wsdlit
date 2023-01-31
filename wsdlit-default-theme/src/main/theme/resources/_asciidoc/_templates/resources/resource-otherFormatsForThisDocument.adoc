@@ -1,0 +1,19 @@
+ifdef::backend-html5[]
+[appendix]
+== Outros formatos da documentación
+:ebook-filename: books/{wsdlit-project-code}-{revnumber}
+
+Pode descargar esta mesma documentación nos seguintes formatos:
+
+ifndef::wsdlit-skip-pdf[]
+* icon:file-pdf-o[] link:{ebook-filename}.pdf[Formato PDF].
+endif::[]
+ifndef::wsdlit-skip-epub[]
+* icon:book[] link:{ebook-filename}.epub[Formato EPUB3].
+endif::[]
+ifndef::wsdlit-skip-mobi[]
+* icon:book[] link:{ebook-filename}.mobi[Formato MOBI/KF8].
+endif::[]
+ifndef::wsdlit-skip-html5[]
+* icon:html5[] link:{ebook-filename}.zip[HTML5 ZIP].
+endif::[]

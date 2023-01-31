@@ -1,0 +1,10 @@
+[appendix]
+== Rexistro de cambios da documentación
+
+Esta sección se refire aos cambios que sufriu a presente documentación dende o momento de publicación neste formato,
+polo que cada subsección de que consta se refire a unha versión da documentación,
+e non se deben confundir coas versións dos proxectos do código aos que se poida facer referencia ao longo da mesma.
+
+Co obxectivo de limitar o tamaño do documento é posible que se tome a decisión de limitar o historial de cambios reflectidos,
+a medida que o seu contido deixe de ser relevante dende a propia perspectiva do historial de cambios do documento.
+

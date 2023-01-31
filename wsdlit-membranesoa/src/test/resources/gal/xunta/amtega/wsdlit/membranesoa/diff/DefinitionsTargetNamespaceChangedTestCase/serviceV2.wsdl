@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="service" targetNamespace="http://coutemeier.com/service/operationid/v2"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+             xmlns:tns="http://coutemeier.com/service/operationid/v2">
+    <types>
+        <xsd:schema targetNamespace="http://coutemeier.com/service/operationid/v2" elementFormDefault="qualified" xmlns:tns="http://coutemeier.com/service/operationid/v2">
+            <xsd:complexType name="CreateRequestType">
+                <xsd:sequence>
+                    <xsd:element name="operationId" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="CreateResponseType">
+                <xsd:sequence>
+                    <xsd:element name="operationId" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="CreateRequest" type="tns:CreateRequestType"/>
+            <xsd:element name="CreateResponse" type="tns:CreateResponseType"/>
+        </xsd:schema>
+    </types>
+    <message name="createRequest">
+        <part name="part" element="tns:CreateRequest"/>
+    </message>
+    <message name="createResponse">
+        <part name="part" element="tns:CreateResponse"/>
+    </message>
+    <portType name="idPortType">
+        <operation name="create">
+            <input name="input1" message="tns:createRequest"/>
+            <output name="output1" message="tns:createResponse"/>
+        </operation>
+    </portType>
+    <plnk:partnerLinkType name="service">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="idPortTypeRole" portType="tns:idPortType"/>
+    </plnk:partnerLinkType>
+</definitions>

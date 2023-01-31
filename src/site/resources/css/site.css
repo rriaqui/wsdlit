@@ -1,0 +1,107 @@
+/*-
+ * #%L
+ * wsdlit
+ * %%
+ * Copyright (C) 2021 - 2022 Axencia para a Modernización Tecnolóxica de Galicia (AMTEGA) - Xunta de Galicia
+ * %%
+ * This file is part of "wsdlit".
+ * 
+ * "wsdlit" is free software: you can redistribute it and/or modify
+ * it under the terms of:
+ * European Union Public License, either Version 1.2 or – as soon
+ * they will be approved by the European Commission - subsequent versions of
+ * the EUPL;
+ * 
+ * "wsdlit" is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * European Union Public License for more details.
+ * 
+ * You may obtain a copy of tce European Union Public Licence at:
+ * http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+ * #L%
+ */
+
+#topbar > div > div {
+    width: 100%;
+}
+
+.github-fork-ribbon:before {
+    background-color: #007bc4 !important;
+}
+
+tr.b td figure img {
+    max-width: 60px;
+}
+
+/* Restauramos a icona orixinal do skin por defecto para links externos*/
+a.externalLink[href^=https] {
+    background: url('../images/internet-web-browser.png') right center no-repeat !important;
+}
+
+/* Axustamos a altura da icona usada na barra superior */
+.brand img {
+    height: 20px;
+}
+
+.container {
+    padding-left: 20px;
+    padding-right: 20px;
+    width: auto;
+}
+
+#label-version {
+    float: left;
+    font-weight: bold;
+    padding: 4px 0;
+    width: 5em;
+}
+
+footer .container .row {
+    float: left;
+    margin-block-end: 0;
+    padding-left: 50px;
+}
+
+footer .container .row > div {
+    padding: 4px 0;
+    text-align: center;
+}
+
+#selectProjectVersion + .versionMenu:active,
+#selectProjectVersion:focus + .versionMenu {
+    visibility: visible;
+}
+
+.versionMenu {
+    visibility: hidden;
+}
+
+.versionMenu > ul {
+    border: 1px solid #767676;
+    border-radius: 2px;
+    list-style: none;
+}
+
+.versionMenu ul li button {
+    background-color: #007bc4;
+    border: 0;
+    color: #fff;
+    line-height: 1.15;
+    margin: 0;
+    padding: 0.2rem 0.8rem;
+    width: 100%;
+}
+
+.versionMenu ul li button:hover {
+    background-color: #00009f;
+    color: #fff;
+}
+
+.icon-green {
+    color: green;
+}
+
+icon-red {
+    color: red;
+}

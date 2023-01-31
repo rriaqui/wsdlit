@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+    name="contrato"
+    targetNamespace="http://localhost.localdomain/contrato"
+    xmlns:tns="http://localhost.localdomain/contrato"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+>
+
+    <types>
+        <xsd:schema targetNamespace="http://localhost.localdomain/contrato">
+            <xsd:group name="CallbackGroupType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:group>
+            <xsd:complexType name="AddRequestType">
+                <xsd:sequence minOccurs="0" maxOccurs="2">
+                    <xsd:group ref="tns:CallbackGroupType"  minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="AddResponseType"/>
+            <xsd:element name="AddRequest" type="tns:AddRequestType"/>
+            <xsd:element name="AddResponse" type="tns:AddResponseType"/>
+        </xsd:schema>
+    </types>
+    <message name="AddRequest" >
+        <part name="part" element="tns:AddRequest"/>
+    </message>
+    <message name="AddResponse">
+        <part name="part" element="tns:AddResponse"/>
+    </message>
+
+    <portType name="Calculator">
+        <operation name="add">
+            <input message="tns:AddRequest"/>
+            <output message="tns:AddResponse"/>
+        </operation>
+    </portType>
+</definitions>

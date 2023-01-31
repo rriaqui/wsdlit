@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  wsdlit-guide-parent
+  %%
+  Copyright (C) 2021 - 2022 Axencia para a Modernización Tecnolóxica de Galicia (AMTEGA) - Xunta de Galicia
+  %%
+  This file is part of "wsdlit".
+
+  "wsdlit" is free software: you can redistribute it and/or modify
+  it under the terms of:
+  European Union Public License, either Version 1.2 or – as soon
+  they will be approved by the European Commission - subsequent versions of
+  the EUPL;
+
+  "wsdlit" is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  European Union Public License for more details.
+
+  You may obtain a copy of tce European Union Public Licence at:
+  http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+  #L%
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>wsdlit</artifactId>
+        <groupId>gal.xunta.amtega.wsdlit</groupId>
+        <version>2.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>wsdlit-guide-parent</artifactId>
+    <packaging>pom</packaging>
+
+    <description>POM pai dos proxectos de documentación.</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <extension.apache-wagon-webdav-jackrabbit>3.5.2</extension.apache-wagon-webdav-jackrabbit>
+
+        <!-- Plugin and dependency versions-->
+        <plugin.asciidoctor-asciidoctor>2.2.2</plugin.asciidoctor-asciidoctor>
+        <plugin.jeluard-plantuml>1.2</plugin.jeluard-plantuml>
+        <plugin.mojohaus-wagon>2.0.2</plugin.mojohaus-wagon>
+
+        <dependency.asciidoctorj-diagram>2.2.3</dependency.asciidoctorj-diagram>
+        <dependency.asciidoctorj-epub>1.5.1</dependency.asciidoctorj-epub>
+        <dependency.asciidoctorj-pdf>2.3.3</dependency.asciidoctorj-pdf>
+        <dependency.asciidoctorj-monotree>0.0.1</dependency.asciidoctorj-monotree>
+        <dependency.jeluard-plantuml>1.2022.8</dependency.jeluard-plantuml>
+
+        <!-- wsdlit.convert.epub.skip: evita a xeración da documentación en formato epub -->
+        <wsdlit.convert.epub.skip>false</wsdlit.convert.epub.skip>
+        <!-- wsdlit.convert.html5.skip: evita a xeración da documentación en formato HTML5 -->
+        <wsdlit.convert.html5.skip>false</wsdlit.convert.html5.skip>
+        <!-- wsdlit.convert.mobi.skip: evita a xeración da documentación en formato kf8 -->
+        <wsdlit.convert.mobi.skip>false</wsdlit.convert.mobi.skip>
+        <!-- wsdlit.convert.pdf.skip: evita a xeración da documentación en formato pdf -->
+        <wsdlit.convert.pdf.skip>false</wsdlit.convert.pdf.skip>
+        <!--
+            Read more about compress e optimize in https://docs.asciidoctor.org/pdf-converter/2.1/optimize-pdf/
+        -->
+        <!-- wsdlit.convert.pdf.compress: compress the pdf file with FlateEncode -->
+        <wsdlit.convert.pdf.compress>false</wsdlit.convert.pdf.compress>
+        <!-- wsdlit.convert.pdf.optimize: optimize the pdf file with GhostScript -->
+        <wsdlit.convert.pdf.optimize>true</wsdlit.convert.pdf.optimize>
+        <!-- Default values-->
+        <wsdlit.api.author/>
+        <wsdlit.api.email/>
+        <wsdlit.api.organization/>
+        <wsdlit.api.copyright/>
+        <wsdlit.api.revDate/>
+
+        <!-- Skip the homepage artifact (files that allow to select the documentation version) -->
+        <wsdlit.upload.artifact-homepage.skip>false</wsdlit.upload.artifact-homepage.skip>
+
+        <wsdlit.main.basedir>${project.parent.basedir}</wsdlit.main.basedir>
+    </properties>
+
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav-jackrabbit</artifactId>
+                <version>${extension.apache-wagon-webdav-jackrabbit}</version>
+            </extension>
+        </extensions>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>wagon-maven-plugin</artifactId>
+                    <version>${plugin.mojohaus-wagon}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>com.github.jeluard</groupId>
+                    <artifactId>plantuml-maven-plugin</artifactId>
+                    <version>${plugin.jeluard-plantuml}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.asciidoctor</groupId>
+                    <artifactId>asciidoctor-maven-plugin</artifactId>
+                    <version>${plugin.asciidoctor-asciidoctor}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.asciidoctor</groupId>
+                            <artifactId>asciidoctorj-diagram</artifactId>
+                            <version>${dependency.asciidoctorj-diagram}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.asciidoctor</groupId>
+                            <artifactId>asciidoctorj-epub3</artifactId>
+                            <version>${dependency.asciidoctorj-epub}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>com.github.allati.asciidoctor.monotree</groupId>
+                            <artifactId>asciidoctor-extension-monotree</artifactId>
+                            <version>${dependency.asciidoctorj-monotree}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.asciidoctor</groupId>
+                            <artifactId>asciidoctorj-pdf</artifactId>
+                            <version>${dependency.asciidoctorj-pdf}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>wsdlit-build-enabled</id>
+            <properties>
+                <!-- asciidoctor.sourceDirectory: AsciiDoctor sources directory. -->
+                <asciidoctor.sourceDirectory>${wsdlit.guide.resources.directory}/sources</asciidoctor.sourceDirectory>
+                <!-- asciidoctor.sourceDocumentName: Document name to renderize. -->
+                <asciidoctor.sourceDocumentName>index.adoc</asciidoctor.sourceDocumentName>
+                <!-- wsdlit.guide.build.directory: output directory to build documentation. -->
+                <wsdlit.guide.build.directory>${project.build.directory}/wsdlit-build</wsdlit.guide.build.directory>
+                <!-- wsdlit.guide.output.directory: output directory of all formats documentation -->
+                <wsdlit.guide.output.directory>${project.build.directory}/wsdlit-guide</wsdlit.guide.output.directory>
+                <!--wsdlit.guide.resources.directory: resources directory used to renderize the documentation. -->
+                <wsdlit.guide.resources.directory>${wsdlit.guide.build.directory}/resources</wsdlit.guide.resources.directory>
+                <!-- wsdlit.guide.todir.directory: upload directory where publish documentation -->
+                <wsdlit.guide.todir.directory>${project.groupId}/${project.artifactId}</wsdlit.guide.todir.directory>
+                <!-- wsdlit.guide.style.html5.name: HTML theme name to apply (HTML5 format). -->
+                <wsdlit.guide.style.html5.name>html5</wsdlit.guide.style.html5.name>
+                <!-- wsdlit.guide.style.html5.directory: resource theme directory for HTNML5 format. -->
+                <wsdlit.guide.style.html5.directory>${wsdlit.theme.output.directory}/${wsdlit.guide.style.html5.name}</wsdlit.guide.style.html5.directory>
+
+                <!-- wsdlit.guide.style: style name to apply. -->
+                <wsdlit.guide.style>wsdlit</wsdlit.guide.style>
+                <!-- wsdlit.guide.style.directory: style directory name in ${wsdlit.theme.output.directory}. -->
+                <wsdlit.guide.style.directory>pdf</wsdlit.guide.style.directory>
+
+                <!-- wsdlit.guide.styles.directory: directory name in ${wsdlit.theme.output.directory} for PDF format. -->
+                <wsdlit.guide.styles.directory>${wsdlit.theme.output.directory}/${wsdlit.guide.style.directory}</wsdlit.guide.styles.directory>
+                <!-- wsdlit.site.server.id: serverId in settings.xml for getting credentials to publish documentation. -->
+                <wsdlit.site.server.id/>
+                <!-- wsdlit.site.repository.url: URL root to publish documentation. All documentations have same root directory. -->
+                <wsdlit.site.repository.url/>
+                <!-- Provider used by cargo to publish documentation.-->
+                <wsdlit.site.repository.provider>dav</wsdlit.site.repository.provider>
+                <!-- Artifact theme coordinates. -->
+                <wsdlit.theme.artifact/>
+                <!-- wsdlit.theme.output.directory: output directory for theme uncompressing. -->
+                <wsdlit.theme.output.directory>${wsdlit.guide.resources.directory}/theme</wsdlit.theme.output.directory>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.jeluard</groupId>
+                        <artifactId>plantuml-maven-plugin</artifactId>
+                        <configuration>
+                            <outputDirectory>${asciidoctor.sourceDirectory}/images</outputDirectory>
+                            <format>png</format>
+                            <verbose>false</verbose>
+                            <sourceFiles>
+                                <directory>${project.basedir}</directory>
+                                <includes>
+                                    <include>src/main/plantuml/**/*.plantuml</include>
+                                </includes>
+                            </sourceFiles>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>net.sourceforge.plantuml</groupId>
+                                <artifactId>plantuml</artifactId>
+                                <version>${dependency.jeluard-plantuml}</version>
+                                <scope>runtime</scope>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>generate-plantuml-diagrams</id>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <phase>generate-sources</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <!-- Desempaqueta o tema -->
+                                <id>wsdlit-theme-unpack</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifact>${wsdlit.theme.artifact}</artifact>
+                                    <outputDirectory>${wsdlit.theme.output.directory}</outputDirectory>
+                                    <overWriteIfNewer>true</overWriteIfNewer>
+                                    <overWriteSnapshots>true</overWriteSnapshots>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>wsdlit-copy-sources</id>
+                                <phase>process-sources</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${asciidoctor.sourceDirectory}</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>${wsdlit.theme.output.directory}/_asciidoc/_templates</directory>
+                                            <filtering>false</filtering>
+                                        </resource>
+                                        <resource>
+                                            <directory>src/main/asciidoc</directory>
+                                            <filtering>true</filtering>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>wsdlit-prepare-artifact-homepage</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${wsdlit.guide.output.directory}</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>${wsdlit.theme.output.directory}/artifact-homepage</directory>
+                                            <includes>
+                                                <include>**/*.png</include>
+                                                <include>**/*.jpg</include>
+                                                <include>**/*.svg</include>
+                                            </includes>
+                                            <filtering>false</filtering>
+                                        </resource>
+                                        <resource>
+                                            <directory>${wsdlit.theme.output.directory}/artifact-homepage</directory>
+                                            <excludes>
+                                                <exclude>**/*.png</exclude>
+                                                <exclude>**/*.jpg</exclude>
+                                                <exclude>**/*.svg</exclude>
+                                            </excludes>
+                                            <filtering>true</filtering>
+                                        </resource>
+                                    </resources>
+                                    <skip>${wsdlit.upload.artifact-homepage.skip}</skip>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>wsdlit-prepare-guide</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${wsdlit.guide.output.directory}/${project.version}</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>${wsdlit.guide.style.html5.directory}</directory>
+                                            <filtering>false</filtering>
+                                        </resource>
+                                        <resource>
+                                            <directory>${wsdlit.guide.build.directory}/html5</directory>
+                                            <filtering>false</filtering>
+                                        </resource>
+                                        <resource>
+                                            <directory>${wsdlit.guide.build.directory}/epub</directory>
+                                            <targetPath>books</targetPath>
+                                            <filtering>false</filtering>
+                                            <includes>
+                                                <include>${project.artifactId}-${project.version}.epub</include>
+                                            </includes>
+                                        </resource>
+                                        <resource>
+                                            <directory>${wsdlit.guide.build.directory}/mobi</directory>
+                                            <targetPath>books</targetPath>
+                                            <filtering>false</filtering>
+                                            <includes>
+                                                <include>${project.artifactId}-${project.version}.mobi</include>
+                                            </includes>
+                                        </resource>
+                                        <resource>
+                                            <directory>${wsdlit.guide.build.directory}/pdf</directory>
+                                            <targetPath>books</targetPath>
+                                            <filtering>false</filtering>
+                                            <includes>
+                                                <include>${project.artifactId}-${project.version}.pdf</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <nonFilteredFileExtensions>
+                                <nonFilteredFileExtension>epub</nonFilteredFileExtension>
+                                <nonFilteredFileExtension>jpg</nonFilteredFileExtension>
+                                <nonFilteredFileExtension>mobi</nonFilteredFileExtension>
+                                <nonFilteredFileExtension>pdf</nonFilteredFileExtension>
+                                <nonFilteredFileExtension>png</nonFilteredFileExtension>
+                                <nonFilteredFileExtension>svg</nonFilteredFileExtension>
+                            </nonFilteredFileExtensions>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctor-maven-plugin</artifactId>
+                        <version>${plugin.asciidoctor-asciidoctor}</version>
+                        <executions>
+                            <execution>
+                                <id>wsdlit-convert-html5</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>process-asciidoc</goal>
+                                </goals>
+                                <configuration>
+                                    <skip>${wsdlit.convert.html5.skip}</skip>
+                                    <attributes>
+                                        <linkcss />
+                                        <max-width>100em</max-width>
+                                        <toc>left</toc>
+                                    </attributes>
+                                    <backend>html5</backend>
+                                    <outputDirectory>${wsdlit.guide.build.directory}/html5</outputDirectory>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>wsdlit-convert-epub3</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>process-asciidoc</goal>
+                                </goals>
+                                <configuration>
+                                    <attributes>
+                                        <doctype>book</doctype>
+                                        <ebook-format>epub3</ebook-format>
+                                    </attributes>
+                                    <skip>${wsdlit.convert.epub.skip}</skip>
+                                    <backend>epub3</backend>
+                                    <outputDirectory>${wsdlit.guide.build.directory}/epub</outputDirectory>
+                                    <outputFile>${project.artifactId}-${project.version}.epub</outputFile>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>wsdlit-convert-mobi</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>process-asciidoc</goal>
+                                </goals>
+                                <configuration>
+                                    <attributes>
+                                        <doctype>book</doctype>
+                                        <ebook-format>kf8</ebook-format>
+                                    </attributes>
+                                    <skip>${wsdlit.convert.mobi.skip}</skip>
+                                    <backend>epub3</backend>
+                                    <outputDirectory>${wsdlit.guide.build.directory}/mobi</outputDirectory>
+                                    <outputFile>${project.artifactId}-${project.version}.mobi</outputFile>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>wsdlit-convert-pdf</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>process-asciidoc</goal>
+                                </goals>
+                                <configuration>
+                                    <skip>${wsdlit.convert.pdf.skip}</skip>
+                                    <attributes>
+                                        <pdf-theme>${wsdlit.guide.style}</pdf-theme>
+                                        <pdf-themesdir>${wsdlit.guide.styles.directory}</pdf-themesdir>
+                                        <compress>${wsdlit.convert.pdf.compress}</compress>
+                                        <optimize>${wsdlit.convert.pdf.optimize}</optimize>
+                                    </attributes>
+                                    <backend>pdf</backend>
+                                    <outputDirectory>${wsdlit.guide.build.directory}/pdf</outputDirectory>
+                                    <outputFile>${project.artifactId}-${project.version}.pdf</outputFile>
+                                </configuration>
+                            </execution>
+                        </executions>
+
+                        <configuration>
+                            <attributes>
+                                <copyright>${wsdlit.api.copyright}</copyright>
+                                <description>${project.description}</description>
+                                <lang>gl_ES</lang>
+                                <preserveDirectories>false</preserveDirectories>
+                                <!-- Date revisión -->
+                                <revdate>${wsdlit.api.revDate}</revdate>
+                                <revnumber>${project.version}</revnumber>
+                                <iconfont-remote>true</iconfont-remote>
+                                <source-highlighter>coderay</source-highlighter>
+                                <wsdlit-api-author>${wsdlit.api.author}</wsdlit-api-author>
+                                <wsdlit-api-email>${wsdlit.api.email}</wsdlit-api-email>
+                                <wsdlit-api-organization>${wsdlit.api.organization}</wsdlit-api-organization>
+                                <wsdlit-project-code>${project.artifactId}</wsdlit-project-code>
+                                <wsdlit-skip-html5>${wsdlit.convert.html5.skip}</wsdlit-skip-html5>
+                                <wsdlit-skip-epub>${wsdlit.convert.epub.skip}</wsdlit-skip-epub>
+                                <wsdlit-skip-mobi>${wsdlit.convert.mobi.skip}</wsdlit-skip-mobi>
+                                <wsdlit-skip-pdf>${wsdlit.convert.pdf.skip}</wsdlit-skip-pdf>
+                            </attributes>
+                            <requires>
+                                <require>asciidoctor-diagram</require>
+                            </requires>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <!--
+                                    Creates a zip with all generated content (html and books).
+                                -->
+                                <id>wsdlit-package-zip</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                                <configuration>
+                                    <attach>true</attach>
+                                    <ignoreMissingDescriptor>true</ignoreMissingDescriptor>
+                                    <appendAssemblyId>false</appendAssemblyId>
+                                    <descriptors>
+                                        <descriptor>src/assembly/wsdlit-guide.xml</descriptor>
+                                    </descriptors>
+                                    <outputDirectory>${wsdlit.guide.output.directory}/${project.version}/books</outputDirectory>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>wagon-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>wsdlit-upload</id>
+                                <goals>
+                                    <goal>upload</goal>
+                                </goals>
+                                <inherited>false</inherited>
+                                <configuration>
+                                    <fromDir>${wsdlit.guide.output.directory}</fromDir>
+                                    <includes>**/*</includes>
+                                    <serverId>${wsdlit.site.server.id}</serverId>
+                                    <toDir>${wsdlit.guide.todir.directory}</toDir>
+                                    <url>${wsdlit.site.repository.provider}:${wsdlit.site.repository.url}</url>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <pluginRepositories>
+        <!--
+            Needed for asciidoctor-extension-monotree
+        -->
+        <pluginRepository>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

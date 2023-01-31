@@ -1,0 +1,60 @@
+<!--
+  #%L
+  AMTEGA WsdlIT Maven Plugin
+  %%
+  Copyright (C) 2021 - 2022 Axencia para a Modernización Tecnolóxica de Galicia (AMTEGA) - Xunta de Galicia
+  %%
+  This file is part of "wsdlit".
+  
+  "wsdlit" is free software: you can redistribute it and/or modify
+  it under the terms of:
+  European Union Public License, either Version 1.2 or – as soon
+  they will be approved by the European Commission - subsequent versions of
+  the EUPL;
+  
+  "wsdlit" is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  European Union Public License for more details.
+  
+  You may obtain a copy of tce European Union Public Licence at:
+  http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+  #L%
+  -->
+
+<project
+     xmlns="http://maven.apache.org/DECORATION/1.8.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd"
+>
+
+    <body>
+        <menu name="About">
+            <item name="Introduction" href="./index.html"/>
+            <item name="Goals" href="./plugin-info.html"/>
+            <item name="Usage" href="./usage.html"/>
+        </menu>
+
+        <menu name="Document building">
+            <item name="Introduction" href="./building/index.html"/>
+            <item name="Configuratión" href="./building/configuration.html"/>
+            <item name="Stage 1" href="./building/stage-1.html"/>
+            <item name="Stage 2" href="./building/stage-2.html"/>
+            <item name="Stage 3" href="./building/stage-3.html"/>
+            <item name="Stages 1 + 2" href="./building/stages-1-2.html"/>
+        </menu>
+
+        <menu name="Features">
+            <item name="Additional info" href="./features/additional-info/index.html"/>
+            <item name="Theming" href="./features/theme/index.html"/>
+            <item name="r4c" href="./features/r4c/index.html"/>
+        </menu>
+
+        <menu name="Examples">
+            <item name="Document remote contracts" href="./examples/remote-wsdls.html"/>
+            <item name="Document embedded contracts" href="./examples/embedded-wsdls.html"/>
+            <item name="Patch contracts" href="./examples/patch-wsdls.html"/>
+            <item name="Asciidoctor syntax" href="./examples/asciidoctor-syntax.html"/>
+        </menu>
+    </body>
+</project>

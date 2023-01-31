@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!--
+  #%L
+  wsdlit-example-api
+  %%
+  Copyright (C) 2021 - 2023 Axencia para a Modernización Tecnolóxica de Galicia - Xunta de Galicia
+  %%
+  This file is part of "wsdlit".
+
+  "wsdlit" is free software: you can redistribute it and/or modify
+  it under the terms of:
+  European Union Public License, either Version 1.2 or – as soon
+  they will be approved by the European Commission - subsequent versions of
+  the EUPL;
+
+  "wsdlit" is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  European Union Public License for more details.
+
+  You may obtain a copy of tce European Union Public Licence at:
+  http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+  #L%
+  -->
+
+<svg contentStyleType='text/css' height='183px' preserveAspectRatio='none'
+     style='width:174px;height:183px;background:#FFFFFF;' version='1.1' viewBox='0 0 174 183' width='174px'
+     xmlns='http://www.w3.org/2000/svg' zoomAndPan='magnify'><defs/><g><rect height='149.4754' rx='7.5' ry='7.5' style='stroke:#00000000;stroke-width:1.0;fill:none;' width='150' x='8' y='18'/><text fill='#000000' font-family='Courier' font-size='14' lengthAdjust='spacing' textLength='88' x='14' y='38.9659'>Service (1)</text><text fill='#000000' font-family='Courier' font-size='14' lengthAdjust='spacing' textLength='96' x='40' y='60.0339'>PortType (2)</text><text fill='#000000' font-family='Courier' font-size='14' lengthAdjust='spacing' textLength='104' x='48' y='79.1018'>Operation (3)</text><text fill='#000000' font-family='Courier' font-size='14' lengthAdjust='spacing' textLength='72' x='56' y='98.1697'>input (4)</text><text fill='#000000' font-family='Courier' font-size='14' lengthAdjust='spacing' textLength='64' x='64' y='117.2376'>part (5)</text><text fill='#000000' font-family='Courier' font-size='14' lengthAdjust='spacing' textLength='80' x='56' y='136.3055'>output (6)</text><text fill='#000000' font-family='Courier' font-size='14' lengthAdjust='spacing' textLength='64' x='64' y='155.3734'>part (7)</text><rect fill='none' height='2' style='stroke:#000000;stroke-width:1.0;' width='2' x='29' y='53.6019'/><line style='stroke:#000000;stroke-width:1.0;' x1='22' x2='30' y1='54.6019' y2='54.6019'/><line style='stroke:#000000;stroke-width:1.0;' x1='22' x2='22' y1='45.0679' y2='54.6019'/><rect fill='none' height='2' style='stroke:#000000;stroke-width:1.0;' width='2' x='37' y='72.6698'/><line style='stroke:#000000;stroke-width:1.0;' x1='30' x2='38' y1='73.6698' y2='73.6698'/><line style='stroke:#000000;stroke-width:1.0;' x1='30' x2='30' y1='54.6019' y2='73.6698'/><rect fill='none' height='2' style='stroke:#000000;stroke-width:1.0;' width='2' x='45' y='91.7377'/><line style='stroke:#000000;stroke-width:1.0;' x1='38' x2='46' y1='92.7377' y2='92.7377'/><line style='stroke:#000000;stroke-width:1.0;' x1='38' x2='38' y1='73.6698' y2='92.7377'/><rect fill='none' height='2' style='stroke:#000000;stroke-width:1.0;' width='2' x='53' y='110.8056'/><line style='stroke:#000000;stroke-width:1.0;' x1='46' x2='54' y1='111.8056' y2='111.8056'/><line style='stroke:#000000;stroke-width:1.0;' x1='46' x2='46' y1='92.7377' y2='111.8056'/><rect fill='none' height='2' style='stroke:#000000;stroke-width:1.0;' width='2' x='45' y='129.8735'/><line style='stroke:#000000;stroke-width:1.0;' x1='38' x2='46' y1='130.8735' y2='130.8735'/><line style='stroke:#000000;stroke-width:1.0;' x1='38' x2='38' y1='92.7377' y2='130.8735'/><rect fill='none' height='2' style='stroke:#000000;stroke-width:1.0;' width='2' x='53' y='148.9415'/><line style='stroke:#000000;stroke-width:1.0;' x1='46' x2='54' y1='149.9415' y2='149.9415'/><line style='stroke:#000000;stroke-width:1.0;' x1='46' x2='46' y1='130.8735' y2='149.9415'/></g></svg>

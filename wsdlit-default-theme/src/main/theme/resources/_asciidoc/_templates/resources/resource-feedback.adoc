@@ -1,0 +1,8 @@
+[appendix]
+== O feedback do lector
+
+Agradecemos por adiantado o feedback dos lectores desta documentación.
+Poden achegarnos toda canta suxestión, correción, aclaración, idea ou similar consideren oportuno,
+o seu feedback nos axuda a mellorar a documentación, o que redunda en beneficio de todos.
+
+Pode enviar o seu feedback á dirección de e-mail \feedback@unknown.server.local.

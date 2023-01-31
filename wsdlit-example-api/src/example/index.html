@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="gl_ES">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="description" content="Guía do desenvolvedor de procesos asíncronos">
+<meta name="keywords" content="refactorización,servizos,versión,versionado">
+<meta name="author" content="Ramón Rial &lt;ramon.rial.quitenla@xunta.gal&gt;">
+<meta name="copyright" content="">
+<title>Un exemplo de xeración da documentación dunha API de saúdos.</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<link rel="stylesheet" href="./asciidoctor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--
+  #%L
+  wsdlit-default-theme
+  %%
+  Copyright (C) 2021 - 2022 Axencia para a Modernización Tecnolóxica de Galicia (AMTEGA) - Xunta de Galicia
+  %%
+  This file is part of "wsdlit".
+
+  "wsdlit" is free software: you can redistribute it and/or modify
+  it under the terms of:
+  European Union Public License, either Version 1.2 or – as soon
+  they will be approved by the European Commission - subsequent versions of
+  the EUPL;
+
+  "wsdlit" is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  European Union Public License for more details.
+
+  You may obtain a copy of tce European Union Public Licence at:
+  http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+  #L%
+  -->
+
+<style>
+table.small tbody tr * div,
+table.small tbody tr * p,
+table.small tbody tr * li {
+    font-size: 0.9rem !important;
+}
+
+table.column-nowrap-1 tr td:first-child {
+    white-space: nowrap;
+}
+
+table.column-nowrap-2 tr td:nth-child(2) {
+    white-space: nowrap;
+}
+
+div.sect6 h7 {
+    color: red;
+}
+</style>
+</head>
+<body class="book toc2 toc-left">
+<div id="header" style="max-width: 100em;">
+<h1>Un exemplo de xeración da documentación dunha API de saúdos.</h1>
+<div class="details">
+<span id="author" class="author">Ramón Rial &lt;ramon.rial.quitenla@xunta.gal&gt;</span><br>
+<span id="revnumber">versión 4.3.1,</span>
+<span id="revdate">2022-12-31T10:00:00Z</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Táboa de contido</div>
+<ul class="sectlevel1">
+<li><a href="#_introdución">Introdución</a>
+<ul class="sectlevel2">
+<li><a href="#_cláusula_de_confidencialidade">Cláusula de confidencialidade</a></li>
+<li><a href="#_convencións">Convencións</a>
+<ul class="sectlevel3">
+<li><a href="#_acerca_da_api">Acerca da API</a></li>
+<li><a href="#_lenda_das_seccións_namespaces">Lenda das seccións 'Namespaces'</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_helloworld">1. helloworld</a>
+<ul class="sectlevel2">
+<li><a href="#_greetingporttype">1.1. greetingPortType</a>
+<ul class="sectlevel3">
+<li><a href="#_sayhello">1.1.1. sayHello</a></li>
+<li><a href="#_sayhi">1.1.2. sayHi</a></li>
+</ul>
+</li>
+<li><a href="#_namespaces">1.2. Namespaces</a></li>
+</ul>
+</li>
+<li><a href="#_documentación_adicional">Documentación adicional</a>
+<ul class="sectlevel2">
+<li><a href="#_o_feedback_do_lector">Apéndice A: O feedback do lector</a></li>
+<li><a href="#_marcas_rexistradas">Apéndice B: Marcas rexistradas</a></li>
+<li><a href="#_outros_formatos_da_documentación">Apéndice C: Outros formatos da documentación</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content" style="max-width: 100em;">
+<div class="sect1">
+<h2 id="_introdución"><a class="anchor" href="#_introdución"></a>Introdución</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_cláusula_de_confidencialidade"><a class="anchor" href="#_cláusula_de_confidencialidade"></a>Cláusula de confidencialidade</h3>
+<div class="paragraph">
+<p>Este documento é propiedade de <strong>Axencia para a Modernización Tecnolóxica de Galicia - Xunta de Galicia</strong>.
+Deberá empregar este material exclusivamente para os servizos que foron acordados con <strong>Axencia para a Modernización Tecnolóxica de Galicia - Xunta de Galicia</strong>
+e que requiren necesariamente da súa utilización.</p>
+</div>
+<div class="paragraph">
+<p>Está prohibida a reprodución parcial ou  total, por calquera medio ou método,
+dos contidos deste documento para calquera outro uso non acordado con <strong>Axencia para a Modernización Tecnolóxica de Galicia - Xunta de Galicia</strong>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_convencións"><a class="anchor" href="#_convencións"></a>Convencións</h3>
+<div class="sect3">
+<h4 id="_acerca_da_api"><a class="anchor" href="#_acerca_da_api"></a>Acerca da API</h4>
+<div class="paragraph">
+<p>Nos seguintes capítulos atopará a API de cada un dos contratos abstractos que se referenciaron no momento de construir esta documentación,
+seguindo unha xerarquía moi clara centrada no contrato que se pretende documentar.
+A documentación se extrae dos nodos <code>&lt;documentation&gt;</code> do mesmo arquivo do contrato,
+amosándose un <strong>WARNING</strong> onde falte a documentación.</p>
+</div>
+<div class="paragraph">
+<p>A continuación pode atopar un resume da xerarquía da documentación da API:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Service. Se describe o contrato a partires da documentación do wsdl.
+O identificador do contrato se extrae do atributo <strong>name</strong> do mesmo.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PortType. Se describen un por un todos os <strong>porType</strong> do contrato.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Operation. Se describen unha por unha todas as <strong>operation</strong> do contrato.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>input. Se describe o parámetro <strong>input</strong> da operación, se existe.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>part. Se describen un por un os distintos <strong>part</strong> do parámetro.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>output. Se describe o parámetro <strong>output</strong> da operación, se existe.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>part. Se describen un por un os distintos <strong>part</strong> do parámetro.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/diag-e7dbd72f75a1b602b61464bd9c481dca.svg" alt="Diagram" width="174" height="183">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Se describe o servizo a partires da documentación do wsdl. O identificador do contrato se extrae do atributo <strong>name</strong> do mesmo.</p>
+</li>
+<li>
+<p>Se describen un por un todos os <strong>porType</strong> do contrato.</p>
+</li>
+<li>
+<p>Se describen unha por unha todas as <strong>operation</strong> do contrato.</p>
+</li>
+<li>
+<p>Se describe o parámetro <strong>input</strong> da operación, se existe.</p>
+</li>
+<li>
+<p>Se describen un por un os distintos <strong>part</strong> do parámetro.</p>
+</li>
+<li>
+<p>Se describe o parámetro <strong>output</strong> da operación, se existe.</p>
+</li>
+<li>
+<p>Se describen un por un os distintos <strong>part</strong> do parámetro.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_lenda_das_seccións_namespaces"><a class="anchor" href="#_lenda_das_seccións_namespaces"></a>Lenda das seccións 'Namespaces'</h4>
+<div class="paragraph">
+<p>As distintas seccións que levan por título <strong>Namespaces</strong> e que enumeran a lista de namespaces usados no servizo,
+posúen todas elas a seguinte lenda:</p>
+</div>
+<table class="tableblock frame-none grid-cols stripes-none fit-content">
+<caption class="title">Lenda</caption>
+<colgroup>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A</strong>: attributeFormDefault<br>
+<strong>E</strong>: elementFormDefault</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle"></i></span> &#8658; <code>qualified</code><br>
+<span class="icon red"><i class="fa fa-minus-circle"></i></span> &#8658; <code>unqualified</code><br>
+<span class="icon silver"><i class="fa fa-question-circle"></i></span> &#8658; <code>descoñecido</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_helloworld"><a class="anchor" href="#_helloworld"></a>1. helloworld</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Exemplo do contrato dun servizo que saúda a quen o consume.</p>
+</div>
+<div class="sect2">
+<h3 id="_greetingporttype"><a class="anchor" href="#_greetingporttype"></a>1.1. greetingPortType</h3>
+<div class="paragraph">
+<p>Porto que agrupa as funcionalidades de saúdo.</p>
+</div>
+<div class="sect3">
+<h4 id="_sayhello"><a class="anchor" href="#_sayhello"></a>1.1.1. sayHello</h4>
+<div class="paragraph">
+<p>Devolve unha mensaxe cun saúdo formal.
+<br>
+A operación responde ao patrón <strong>REQUEST_RESPONSE</strong>.</p>
+</div>
+<div class="sect4">
+<h5 id="_parámetro_input_sayhellorequest"><a class="anchor" href="#_parámetro_input_sayhellorequest"></a>1.1.1.1. Parámetro input: sayHelloRequest</h5>
+<div class="paragraph">
+<p>Parámetro da operación que contén a mensaxe recibida.</p>
+</div>
+<div class="sect5">
+<h6 id="_part_part_element_tnssayhellorequest"><a class="anchor" href="#_part_part_element_tnssayhellorequest"></a>Part: part (element tns:SayHelloRequest)</h6>
+<div class="imageblock">
+<div class="content">
+<img src="images/diag-cad30fca0557a8d906516a728fd43794.svg" alt="Diagram" width="270" height="107">
+</div>
+<div class="title">Figura 1. Representación da estrutura xerárquica de datos do part</div>
+</div>
+<table class="tableblock frame-all grid-all fit-content stretch small column-nowrap-2">
+<caption class="title">Táboa 1. Descrición dos elementos do part da mensaxe</caption>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-middle"></th>
+<th class="tableblock halign-left valign-middle">Nome</th>
+<th class="tableblock halign-center valign-middle">#</th>
+<th class="tableblock halign-left valign-middle">Descrición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>(SEQUENCE)</p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Aviso"></i>
+</td>
+<td class="content">
+Documentación ausente
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>tns:name</p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>xsd:string</code> O nome da persoa a saudar.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_parámetro_output_sayhelloresponse"><a class="anchor" href="#_parámetro_output_sayhelloresponse"></a>1.1.1.2. Parámetro output: sayHelloResponse</h5>
+<div class="paragraph">
+<p>Parámetro da operación que contén a mensaxe que se enviará como resposta.</p>
+</div>
+<div class="sect5">
+<h6 id="_part_part_element_tnssayhelloresponse"><a class="anchor" href="#_part_part_element_tnssayhelloresponse"></a>Part: part (element tns:SayHelloResponse)</h6>
+<div class="imageblock">
+<div class="content">
+<img src="images/diag-a60b63ce25801ba587dd7d78d8540462.svg" alt="Diagram" width="294" height="107">
+</div>
+<div class="title">Figura 2. Representación da estrutura xerárquica de datos do part</div>
+</div>
+<table class="tableblock frame-all grid-all fit-content stretch small column-nowrap-2">
+<caption class="title">Táboa 2. Descrición dos elementos do part da mensaxe</caption>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-middle"></th>
+<th class="tableblock halign-left valign-middle">Nome</th>
+<th class="tableblock halign-center valign-middle">#</th>
+<th class="tableblock halign-left valign-middle">Descrición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>(SEQUENCE)</p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Aviso"></i>
+</td>
+<td class="content">
+Documentación ausente
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>tns:message</p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>xsd:string</code> Mensaxe de resposa que se comporá a partires da plantilla seguinte: <code>Hola, Guía do desenvolvedor. ¿Cómo estás?</code>.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sayhi"><a class="anchor" href="#_sayhi"></a>1.1.2. sayHi</h4>
+<div class="paragraph">
+<p>Devolve unha mensaxe cun saúdo informal.
+<br>
+A operación responde ao patrón <strong>REQUEST_RESPONSE</strong>.</p>
+</div>
+<div class="sect4">
+<h5 id="_parámetro_input_sayhirequest"><a class="anchor" href="#_parámetro_input_sayhirequest"></a>1.1.2.1. Parámetro input: sayHiRequest</h5>
+<div class="paragraph">
+<p>Parámetro da operación que contén a mensaxe recibida.</p>
+</div>
+<div class="sect5">
+<h6 id="_part_part_element_tnssayhirequest"><a class="anchor" href="#_part_part_element_tnssayhirequest"></a>Part: part (element tns:SayHiRequest)</h6>
+<div class="imageblock">
+<div class="content">
+<img src="images/diag-86e5c0e93a9651b4de89eeda8d1e637c.svg" alt="Diagram" width="270" height="107">
+</div>
+<div class="title">Figura 3. Representación da estrutura xerárquica de datos do part</div>
+</div>
+<table class="tableblock frame-all grid-all fit-content stretch small column-nowrap-2">
+<caption class="title">Táboa 3. Descrición dos elementos do part da mensaxe</caption>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-middle"></th>
+<th class="tableblock halign-left valign-middle">Nome</th>
+<th class="tableblock halign-center valign-middle">#</th>
+<th class="tableblock halign-left valign-middle">Descrición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>(SEQUENCE)</p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Aviso"></i>
+</td>
+<td class="content">
+Documentación ausente
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>tns:name</p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>xsd:string</code> O nome da persoa a saudar.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_parámetro_output_sayhiresponse"><a class="anchor" href="#_parámetro_output_sayhiresponse"></a>1.1.2.2. Parámetro output: sayHiResponse</h5>
+<div class="paragraph">
+<p>Parámetro da operación que contén a mensaxe que se enviará como resposta.</p>
+</div>
+<div class="sect5">
+<h6 id="_part_part_element_tnssayhiresponse"><a class="anchor" href="#_part_part_element_tnssayhiresponse"></a>Part: part (element tns:SayHiResponse)</h6>
+<div class="imageblock">
+<div class="content">
+<img src="images/diag-22d8eabff14dde8c7f0da42def7ecb48.svg" alt="Diagram" width="294" height="107">
+</div>
+<div class="title">Figura 4. Representación da estrutura xerárquica de datos do part</div>
+</div>
+<table class="tableblock frame-all grid-all fit-content stretch small column-nowrap-2">
+<caption class="title">Táboa 4. Descrición dos elementos do part da mensaxe</caption>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-middle"></th>
+<th class="tableblock halign-left valign-middle">Nome</th>
+<th class="tableblock halign-center valign-middle">#</th>
+<th class="tableblock halign-left valign-middle">Descrición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>(SEQUENCE)</p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Aviso"></i>
+</td>
+<td class="content">
+Documentación ausente
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>tns:message</p>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>xsd:string</code> Mensaxe de resposa que se comporá a partires da plantilla seguinte: <code>Guía do desenvolvedor, ¿qué tal?</code>.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_namespaces"><a class="anchor" href="#_namespaces"></a>1.2. Namespaces</h3>
+<div class="paragraph">
+<p>A continuación se amosa a lista de namespaces dos esquemas usados neste servizo.
+Por cada namespace se amosa a descrición do mesmo e o valor dos atributos <code>elementFormDefault</code> e <code>attributeFormDefault</code>;
+os provedores procurarán que nos contratos que deseñan o valor de ambos atributos esté establecido a <code>qualified</code>,
+aínda que o valor do <code>attributeFormDefault</code> pode quedar sen establecerse (<code>unqualified</code>) se non se usan atributos no esquema.</p>
+</div>
+<table class="tableblock frame-all grid-all fit-content stretch small nowrap">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-middle">Prefixo</th>
+<th class="tableblock halign-left valign-top">Namespace</th>
+<th class="tableblock halign-center valign-middle">E</th>
+<th class="tableblock halign-center valign-middle">A</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">tns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://localhost.localdomain/wsdlit/examples/helloworld" class="bare">http://localhost.localdomain/wsdlit/examples/helloworld</a><br></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle"></i></span></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="icon red"><i class="fa fa-minus-circle"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">xsd</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.w3.org/2001/XMLSchema" class="bare">http://www.w3.org/2001/XMLSchema</a><br></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="icon green"><i class="fa fa-check-circle"></i></span></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="icon red"><i class="fa fa-minus-circle"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_documentación_adicional"><a class="anchor" href="#_documentación_adicional"></a>Documentación adicional</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_o_feedback_do_lector"><a class="anchor" href="#_o_feedback_do_lector"></a>Apéndice A: O feedback do lector</h3>
+<div class="paragraph">
+<p>Agradecemos por adiantado o feedback dos lectores desta documentación.
+Poden achegarnos toda canta suxestión, correción, aclaración, idea ou similar consideren oportuno,
+o seu feedback nos axuda a mellorar a documentación, o que redunda en beneficio de todos.</p>
+</div>
+<div class="paragraph">
+<p>Pode enviar o seu feedback á dirección de e-mail feedback@unknown.server.local.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_marcas_rexistradas"><a class="anchor" href="#_marcas_rexistradas"></a>Apéndice B: Marcas rexistradas</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><em>{Java}</em> - {uri-Java}</p>
+</li>
+<li>
+<p><em>{Maven}</em> - {uri-Maven}</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_outros_formatos_da_documentación"><a class="anchor" href="#_outros_formatos_da_documentación"></a>Apéndice C: Outros formatos da documentación</h3>
+<div class="paragraph">
+<p>Pode descargar esta mesma documentación nos seguintes formatos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="icon"><i class="fa fa-file-pdf-o"></i></span> <a href="books/wsdlit-example-api-it-4.3.1.pdf">Formato PDF</a>.</p>
+</li>
+<li>
+<p><span class="icon"><i class="fa fa-book"></i></span> <a href="books/wsdlit-example-api-it-4.3.1.epub">Formato EPUB3</a>.</p>
+</li>
+<li>
+<p><span class="icon"><i class="fa fa-html5"></i></span> <a href="books/wsdlit-example-api-it-4.3.1.zip">HTML5 ZIP</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer" style="max-width: 100em;">
+<div id="footer-text">
+Versión 4.3.1<br>
+Ultima actualización 2023-01-30 09:11:12 +0100
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

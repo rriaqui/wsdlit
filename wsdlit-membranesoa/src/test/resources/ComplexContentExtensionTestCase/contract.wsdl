@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="activacionEmpresario"
+             targetNamespace="http://localhost.localdomain/complexContentExtensionTestCase"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:tns="http://localhost.localdomain/complexContentExtensionTestCase"
+>
+    <documentation>Servizo para probas</documentation>
+    <types>
+        <xsd:schema
+                targetNamespace="http://localhost.localdomain/complexContentExtensionTestCase"
+                xmlns:tns="http://localhost.localdomain/complexContentExtensionTestCase"
+                elementFormDefault="qualified"
+                attributeFormDefault="qualified"
+        >
+            <xsd:complexType name="BaseComplexType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ExtendedComplexType">
+                <xsd:complexContent>
+                    <xsd:extension base="tns:BaseComplexType">
+                        <xsd:sequence/>
+                    </xsd:extension>
+                </xsd:complexContent>
+            </xsd:complexType>
+        </xsd:schema>
+    </types>
+</definitions>
