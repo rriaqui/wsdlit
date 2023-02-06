@@ -41,10 +41,9 @@ downloadExtensionLib() {
 installPackageIfNotExists() {
     echo "Checking '${1}' command in $OS_NAME"
     if ! command -v ${1} &> /dev/null; then
-        echo "Missing ${1} command"
         case $OS_NAME in
         'Linux')
-            sudo apt-get install -qq ${2} \
+            sudo apt-get install -qq ${2} -y \
             && echo "[  OK   ] Installing '${2}' package" \
             || echo "[ ERROR ] Installing '${2}' package"
             ;;
@@ -64,3 +63,8 @@ fi
 downloadExtensionLib "javagalician-java6.jar" "https://github.com/javagalician/javagalician-java6/releases/download/javagalician-java6-1.1/javagalician-java6-1.1.jar"
 
 installPackageIfNotExists gs ghostscript
+
+if ! command -v ${1} &> /dev/null; then
+    echo "Missing ${1} command"
+    exit 1
+fi
