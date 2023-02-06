@@ -14,6 +14,8 @@
 [![Files](https://www.aschey.tech/tokei/github/amtega/wsdlit?label=Files&category=files)](https://github.com/amtega/wsdlit)
 [![Lines of code](https://www.aschey.tech/tokei/github/amtega/wsdlit?label=Lines%20of%20code)](https://github.com/amtega/wsdlit)
 [![Comments](https://www.aschey.tech/tokei/github/amtega/wsdlit?label=Comments&category=Comments)](https://github.com/amtega/wsdlit)
+[![Code size](https://img.shields.io/github/languages/code-size/amtega/wsdlit.svg)](https://github.com/amtega/wsdlit)
+[![Last commit](https://img.shields.io/github/last-commit/amtega/wsdlit.svg)](https://github.com/amtega/wsdlit/commits/main)
 ---
 
 `wsdlit` is a project that creates documentation in `HTML`, `PDF`, `EPUB` and `MOBI` formats 
