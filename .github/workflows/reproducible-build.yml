@@ -34,10 +34,6 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Prepare build
-        shell: bash
-        run: ${PWD}/bin/prepare-build.sh
-
       - name: Setup Java / Maven
         uses: s4u/setup-maven-action@v1.6.0
         with:
@@ -46,6 +42,10 @@ jobs:
           maven-version: '3.8.7'
           cache-path: ~/.m2/repository
           cache-prefix: wsdlit-reproducible-build-
+
+      - name: Prepare build
+        shell: bash
+        run: ${PWD}/bin/prepare-build.sh
 
       - name: Build with Maven
         shell: bash

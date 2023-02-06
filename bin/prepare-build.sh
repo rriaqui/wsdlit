@@ -51,14 +51,32 @@ installPackageIfNotExists() {
     fi
 }
 
+determineLibExtensionDir() {
+    local path
+    path=`mvn help:evaluate -Dexpression="java.ext.dirs"  --non-recursive  --quiet -B -DforceStdout \
+      | sed '1,5d' \
+       | sed 's/:/\n/g' \
+       | tail -1`
+
+    if [ "${path}" = "" ]; then
+        EXTENSION_LIB_PATH=/usr/java/packages/lib/ext
+    else
+        EXTENSION_LIB_PATH=${path}
+    fi
+}
+
 BASEDIR=$( readlink -f "$( dirname "$0" )" )
 TARGET_PATH=$( readlink -f "${BASEDIR}/../target" )
 EXTENSION_LIB_PATH=/usr/java/packages/lib/ext
 OS_NAME="`uname`"
 
+determineLibExtensionDir
+
 if [ ! -d ${EXTENSION_LIB_PATH} ]; then
     sudo mkdir -p "${EXTENSION_LIB_PATH}"
 fi
+
+echo "EXTENSION_LIB_PATH=${EXTENSION_LIB_PATH}"
 
 downloadExtensionLib "javagalician-java6.jar" "https://github.com/javagalician/javagalician-java6/releases/download/javagalician-java6-1.1/javagalician-java6-1.1.jar"
 

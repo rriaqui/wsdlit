@@ -34,10 +34,6 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Prepare build
-        shell: bash
-        run: ${PWD}/bin/prepare-build.sh
-
       - name: Setup Java / Maven
         uses: s4u/setup-maven-action@v1.6.0
         with:
@@ -47,9 +43,19 @@ jobs:
           cache-path: ~/.m2/repository
           cache-prefix: wsdlit-build-
 
+      - name: Prepare build
+        shell: bash
+        run: ${PWD}/bin/prepare-build.sh
+
       - name: Build with Maven
         shell: bash
-        run: mvn clean install -Dwsdlit-example-api-enabled
+        run: mvn clean install -Dwsdlit-example-api-enabled -Pjacoco
+
+      - uses: codecov/codecov-action@v3
+        with:
+          files: ./wsdlit-maven-plugin/target/site/jacoco/jacoco.xml,./wsdlit-membranesoa/target/site/jacoco/jacoco.xml,./wsdlit-core/target/site/jacoco/jacoco.xml
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Delete wsdlit artifacts from local repository
         if: always()

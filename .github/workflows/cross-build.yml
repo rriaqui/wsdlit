@@ -36,7 +36,7 @@ jobs:
       matrix:
         os: [ 'macOS-latest', 'ubuntu-20.04' ]
         java: [ '8', '11' ]
-        maven: [ '3.8.7', '3.9.0', '4.0.0-alpha-3' ]
+        maven: [ '3.8.7' ]
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
@@ -47,10 +47,6 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Prepare build
-        shell: bash
-        run: ${PWD}/bin/prepare-build.sh
-
       - name: Setup Java / Maven
         uses: s4u/setup-maven-action@v1.6.0
         with:
@@ -59,6 +55,10 @@ jobs:
           maven-version: ${{ matrix.maven }}
           cache-path: ~/.m2/repository
           cache-prefix: wsdlit-cross-build-
+
+      - name: Prepare build
+        shell: bash
+        run: ${PWD}/bin/prepare-build.sh
 
       - name: Build with Maven
         shell: bash
