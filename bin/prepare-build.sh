@@ -27,10 +27,10 @@
 # $1 = Target file
 # $2 = URL
 downloadExtensionLib() {
-    javaGalicianLibraryFile="${EXTENSION_LIB_PATH}/${1}"
+    file="${EXTENSION_LIB_PATH}/${1}"
 
-    if [ ! -f "${javaGalicianLibraryFile}" ]; then
-        sudo wget --quiet -O "${javaGalicianLibraryFile}" "${2}" \
+    if [ ! -f "${file}" ]; then
+        sudo wget --quiet -O "${file}" "${2}" \
         && echo "[  OK   ] Downloading ${1}" \
         || echo "[ ERROR ] Downloading ${1}"
     fi
@@ -40,10 +40,10 @@ downloadExtensionLib() {
 # $2 = Ubuntu package name to install
 installPackageIfNotExists() {
     echo "Checking '${1}' command in $OS_NAME"
-    if ! command -v ${1} &> /dev/null; then
+    if ! command -v "${1}" 1>/dev/null 2>/dev/null; then
         case $OS_NAME in
         'Linux')
-            sudo apt-get install -qq ${2} -y \
+            sudo apt-get install -qq "${2}" -y \
             && echo "[  OK   ] Installing '${2}' package" \
             || echo "[ ERROR ] Installing '${2}' package"
             ;;
@@ -52,8 +52,7 @@ installPackageIfNotExists() {
 }
 
 determineLibExtensionDir() {
-    local path
-    path=`mvn help:evaluate -Dexpression="java.ext.dirs"  --non-recursive  --quiet -B -DforceStdout \
+    path=`mvn help:evaluate -Dexpression=""  --non-recursive  --quiet -B -DforceStdout \
       | sed '1,5d' \
        | sed 's/:/\n/g' \
        | tail -1`
@@ -63,18 +62,15 @@ determineLibExtensionDir() {
     else
         EXTENSION_LIB_PATH=${path}
     fi
+
+    mkdir -p "${EXTENSION_LIB_PATH}"
+    ls -l "${EXTENSION_LIB_PATH}"
 }
 
-BASEDIR=$( readlink -f "$( dirname "$0" )" )
-TARGET_PATH=$( readlink -f "${BASEDIR}/../target" )
-EXTENSION_LIB_PATH=/usr/java/packages/lib/ext
+EXTENSION_LIB_PATH=
 OS_NAME="`uname`"
 
 determineLibExtensionDir
-
-if [ ! -d ${EXTENSION_LIB_PATH} ]; then
-    sudo mkdir -p "${EXTENSION_LIB_PATH}"
-fi
 
 echo "EXTENSION_LIB_PATH=${EXTENSION_LIB_PATH}"
 
@@ -82,7 +78,7 @@ downloadExtensionLib "javagalician-java6.jar" "https://github.com/javagalician/j
 
 installPackageIfNotExists gs ghostscript
 
-if ! command -v ${1} &> /dev/null; then
+if ! command -v "${1}" 1>/dev/null 2>/dev/null; then
     echo "Missing ${1} command"
     exit 1
 fi
