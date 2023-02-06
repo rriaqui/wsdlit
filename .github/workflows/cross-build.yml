@@ -34,7 +34,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ 'ubuntu-20.04', 'macOS-latest' ]
+        os: [ 'macOS-latest', 'ubuntu-20.04' ]
         java: [ '8', '11' ]
         maven: [ '3.8.7', '3.9.0', '4.0.0-alpha-3' ]
       fail-fast: false
