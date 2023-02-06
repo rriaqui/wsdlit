@@ -40,7 +40,7 @@ downloadExtensionLib() {
 # $2 = Ubuntu package name to install
 installPackageIfNotExists() {
     echo "Checking '${1}' command in $OS_NAME"
-    if ! command -v "${1}" 1>/dev/null 2>/dev/null; then
+    if ! [ -x "`command -v ${1}`" ]; then
         case $OS_NAME in
         'Linux')
             sudo apt-get install -qq "${2}" -y \
@@ -49,14 +49,19 @@ installPackageIfNotExists() {
             ;;
         esac
     fi
+
+    if ! [ -x "`command -v ${1}`" ]; then
+        exit 1
+    fi
 }
 
 determineLibExtensionDir() {
-    path=`mvn help:evaluate -Dexpression=""  --non-recursive  --quiet -B -DforceStdout \
+    path=`mvn help:evaluate -Dexpression="java.ext.dirs"  --non-recursive  --quiet -B -DforceStdout \
       | sed '1,5d' \
        | sed 's/:/\n/g' \
        | tail -1`
 
+echo "path=$path"
     if [ "${path}" = "" ]; then
         EXTENSION_LIB_PATH=/usr/java/packages/lib/ext
     else
@@ -77,8 +82,3 @@ echo "EXTENSION_LIB_PATH=${EXTENSION_LIB_PATH}"
 downloadExtensionLib "javagalician-java6.jar" "https://github.com/javagalician/javagalician-java6/releases/download/javagalician-java6-1.1/javagalician-java6-1.1.jar"
 
 installPackageIfNotExists gs ghostscript
-
-if ! command -v "${1}" 1>/dev/null 2>/dev/null; then
-    echo "Missing ${1} command"
-    exit 1
-fi
