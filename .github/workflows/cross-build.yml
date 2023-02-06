@@ -36,7 +36,7 @@ jobs:
       matrix:
         os: [ 'ubuntu-20.04', 'macOS-latest' ]
         java: [ '8', '11' ]
-        maven: [ '3.8.6', '3.8.7', '4.0.0-alpha-3' ]
+        maven: [ '3.8.7', '3.9.0', '4.0.0-alpha-3' ]
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
@@ -51,7 +51,7 @@ jobs:
         shell: bash
         run: ${PWD}/bin/prepare-build.sh
 
-      - name: Setup Java ${{ matrix.java }} / Maven ${{matrix.maven }}
+      - name: Setup Java / Maven
         uses: s4u/setup-maven-action@v1.6.0
         with:
           java-distribution: 'zulu'

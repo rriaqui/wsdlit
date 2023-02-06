@@ -40,27 +40,24 @@
 	<name>AMTEGA WsdlIT Maven Plugin</name>
 	<description>Plugin Maven que convirte contratos de servizos web (en formato `.wsdl`) en documentación `.adoc`.</description>
 
-	<prerequisites>
-		<maven>${maven.version}</maven>
-	</prerequisites>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.version>3.8.6</maven.version>
-
-		<dependency.apache-resolver>1.8.2</dependency.apache-resolver>
-		<dependency.apache-tools>3.6.4</dependency.apache-tools>
+		<dependency.apache-resolver>1.9.4</dependency.apache-resolver>
+		<dependency.apache-tools>3.7.1</dependency.apache-tools>
+		<dependency.apache-commons-io>2.11.0</dependency.apache-commons-io>
+		<dependency.apache-commons-lang3>3.12.0</dependency.apache-commons-lang3>
+		<dependency.google-inject-guice>4.2.2</dependency.google-inject-guice>
+		<dependency.google-guava>31.1-jre</dependency.google-guava>
 
 		<wsdlit.main.basedir>${project.parent.basedir}</wsdlit.main.basedir>
 	</properties>
 
+	<prerequisites>
+		<maven>${maven.version}</maven>
+	</prerequisites>
+
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>commons-io</groupId>
-				<artifactId>commons-io</artifactId>
-				<version>2.11.0</version>
-			</dependency>
 			<dependency>
 				<groupId>org.apache.maven</groupId>
 				<artifactId>maven-core</artifactId>
@@ -70,6 +67,10 @@
 					<exclusion>
 						<groupId>com.google.guava</groupId>
 						<artifactId>guava</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>com.google.inject</groupId>
+						<artifactId>guice</artifactId>
 					</exclusion>
 					<exclusion>
 						<groupId>org.codehaus.plexus</groupId>
@@ -87,9 +88,23 @@
 			</dependency>
 
 			<dependency>
+				<groupId>com.google.inject</groupId>
+				<artifactId>guice</artifactId>
+				<version>${dependency.google-inject-guice}</version>
+				<scope>provided</scope>
+			</dependency>
+
+
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${dependency.apache-commons-io}</version>
+			</dependency>
+
+			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
-				<version>3.12.0</version>
+				<version>${dependency.apache-commons-lang3}</version>
 			</dependency>
 
 			<dependency>
@@ -111,19 +126,6 @@
 				<artifactId>maven-plugin-api</artifactId>
 				<version>${maven.version}</version>
 				<scope>provided</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.maven.plugin-testing</groupId>
-				<artifactId>maven-plugin-testing-harness</artifactId>
-				<version>3.3.0</version>
-				<scope>test</scope>
-				<exclusions>
-					<exclusion>
-						<groupId>org.codehaus.plexus</groupId>
-						<artifactId>plexus-container-default</artifactId>
-					</exclusion>
-				</exclusions>
 			</dependency>
 
 			<dependency>
@@ -155,20 +157,8 @@
 			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
-				<version>31.1-jre</version>
+				<version>${dependency.google-guava}</version>
 				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j</artifactId>
-				<version>1.7.36</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>1.7.36</version>
-				<scope>provided</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -213,6 +203,13 @@
             <artifactId>commons-io</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+
 		<!-- Test dependencies -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -251,6 +248,7 @@
 			<artifactId>guava</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -259,7 +257,6 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-jdk14</artifactId>
-			<version>${dependency.slf4j}</version>
 			<scope>test</scope>
 		</dependency>
 

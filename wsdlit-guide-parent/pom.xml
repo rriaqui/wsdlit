@@ -45,9 +45,9 @@
         <plugin.jeluard-plantuml>1.2</plugin.jeluard-plantuml>
         <plugin.mojohaus-wagon>2.0.2</plugin.mojohaus-wagon>
 
-        <dependency.asciidoctorj-diagram>2.2.3</dependency.asciidoctorj-diagram>
+        <dependency.asciidoctorj-diagram>2.2.4</dependency.asciidoctorj-diagram>
         <dependency.asciidoctorj-epub>1.5.1</dependency.asciidoctorj-epub>
-        <dependency.asciidoctorj-pdf>2.3.3</dependency.asciidoctorj-pdf>
+        <dependency.asciidoctorj-pdf>2.3.4</dependency.asciidoctorj-pdf>
         <dependency.asciidoctorj-monotree>0.0.1</dependency.asciidoctorj-monotree>
         <dependency.jeluard-plantuml>1.2022.8</dependency.jeluard-plantuml>
 

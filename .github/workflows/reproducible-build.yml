@@ -38,12 +38,12 @@ jobs:
         shell: bash
         run: ${PWD}/bin/prepare-build.sh
 
-      - name: Setup Java 8 / Maven 3.8.6
+      - name: Setup Java / Maven
         uses: s4u/setup-maven-action@v1.6.0
         with:
           java-distribution: 'zulu'
           java-version: '8'
-          maven-version: '3.8.6'
+          maven-version: '3.8.7'
           cache-path: ~/.m2/repository
           cache-prefix: wsdlit-reproducible-build-
 
