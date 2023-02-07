@@ -36,7 +36,7 @@ echo "Deleting 'target/gh-pages', 'target/site' and 'target/staging'"
 [ -d "${STAGING_PATH}" ] && rm -Rf "${STAGING_PATH}"
 
 echo 'Building target/site'
-mvn site site:stage
+mvn clean site site:stage
 
 echo ''
 echo 'Building target/gh-pages'

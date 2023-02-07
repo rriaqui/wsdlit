@@ -62,4 +62,4 @@ jobs:
 
       - name: Build with Maven
         shell: bash
-        run: mvn clean package
+        run: mvn clean package -Dwsdlit-example-api-enabled -Pjacoco

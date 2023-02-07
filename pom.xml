@@ -891,5 +891,17 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>wsdlit-invoker_skip-when_skipTests</id>
+            <activation>
+                <property>
+                    <name>skipTests</name>
+                    <value>!false</value>
+                </property>
+            </activation>
+            <properties>
+                <invoker.skip>true</invoker.skip>
+            </properties>
+        </profile>
     </profiles>
 </project>

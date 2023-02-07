@@ -47,6 +47,10 @@ jobs:
         shell: bash
         run: ${PWD}/bin/prepare-build.sh
 
+      - name: Build
+        shell: bash
+        run: mvn clean install -DskipTests
+
       - name: Generate gh-pages
         shell: bash
         run: bin/gh-pages-create.sh
