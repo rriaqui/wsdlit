@@ -23,12 +23,7 @@
 ###
 
 name: Cross build
-on:
-    workflow_run:
-        branches: [ main ]
-        types:
-            - completed
-        workflows: [ Build ]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -40,7 +35,6 @@ jobs:
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - uses: actions/checkout@v3
@@ -62,4 +56,9 @@ jobs:
 
       - name: Build with Maven
         shell: bash
-        run: mvn clean package -Dwsdlit-example-api-enabled -Pjacoco
+        run: mvn clean install -Dwsdlit-example-api-enabled
+
+      - name: Delete wsdlit artifacts from local repository
+        if: always()
+        shell: bash
+        run: rm -Rf ~/.m2/repository/gal/xunta/amtega/wsdlit
