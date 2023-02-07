@@ -49,15 +49,7 @@ jobs:
 
       - name: Build with Maven
         shell: bash
-        run: mvn clean install
-
-      - name: Verify for reproducible build
-        shell: bash
-        run: mvn clean verify artifact:compare
-
-      - name: Test reproducible build
-        shell: bash
-        run: mvn  --non-recursive gplus:execute@test-reproducible-build
+        run: bin/test-reproducible-build.sh
 
       - name: Delete wsdlit artifacts from local repository
         if: always()

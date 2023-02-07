@@ -54,3 +54,8 @@ jobs:
       - name: Generate gh-pages
         shell: bash
         run: bin/gh-pages-create.sh
+
+      - name: Delete wsdlit artifacts from local repository
+        if: always()
+        shell: bash
+        run: rm -Rf ~/.m2/repository/gal/xunta/amtega/wsdlit
